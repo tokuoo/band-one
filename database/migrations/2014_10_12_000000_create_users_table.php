@@ -20,7 +20,14 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->integer('age');
+            $table->string('gender');
+            $table->string('part_main');
+            $table->string('favorite_artist');
+            $table->string('image_url')->nullable();
+            $table->string('team');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
