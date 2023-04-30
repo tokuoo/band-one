@@ -9,8 +9,15 @@ class Post extends Model
 {
     use HasFactory;
     
-    protected $table='posts';
-    
+    protected $fillable = [
+        'title',
+        'body',
+        'place',
+        'recruit_nummbers',
+        'recruit_part',
+        'genre',
+        ];
+
     public function getPaginateByLimit(int $limit_count = 10)
     {
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
