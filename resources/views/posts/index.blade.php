@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <x-app-layout>
+    <x-slot name="header">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +9,7 @@
         <title>Laravel</title>
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
+    </x-slot>
     <body class="antialiased">
         <h1>Band ONE</h1>
         <a href="/posts/create">create</a>
@@ -21,6 +24,34 @@
                     @csrf
                     @method('DELETE')
                     <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
+                    <span>
+                    @if (!$post->likes->isEmpty())
+                        @foreach ($post->likes as $like)
+                            @if ($like->user_id == Auth::id())
+                                <a href="{{ route('unlike', $post) }}" class="btn btn-danger ms-2">
+                                    🤍
+                                    <span class="badge">
+                                        {{ $post->likes->count() }}
+                                    </span>
+                                </a>
+                           @else 
+                                <a href="{{ route('like', $post) }}" class="btn btn-outline-primary ms-2">
+                                    ❤️
+                                    <span class="badge text-black">
+                                        {{ $post->likes->count() }}
+                                    </span>
+                                </a>
+                            @endif
+                        @endforeach
+                    @else
+                                <a href="{{ route('like', $post) }}" class="btn btn-outline-primary ms-2">
+                                    ❤️
+                                    <span class="badge text-black">
+                                        {{ $post->likes->count() }}
+                                    </span>
+                                </a>
+                    @endif
+                    </span>
                 </form>
                 </div>
             @endforeach
@@ -37,4 +68,5 @@
         }
         </script>
     </body>
+    </x-app-layout>
 </html>

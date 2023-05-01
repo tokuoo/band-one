@@ -16,6 +16,16 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Post::factory(10)->create();
+        DB::table('posts')->insert([
+                'title' => 'プロ志向',
+                'body' => '楽器、音楽に触れてきた方募集中！',
+                'place' => '東北地方',
+                'recruit_nummbers' => '2',
+                'recruit_part' => 'ギター',
+                'genre' => '女性',
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+                'updated_at' => new DateTime(),
+         ]);
     }
 }

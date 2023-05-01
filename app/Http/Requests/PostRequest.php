@@ -19,7 +19,7 @@ class PostRequest extends FormRequest
             'post.title' => 'required|string|max:100',
             'post.body' => 'required|string|max:400',
             'post.place' => 'required|string|max:400',
-            'post.recruit_nummbers' => 'required|string|max:400',
+            'post.recruit_nummbers' => 'required|integer|max:2',
             'post.recruit_part' => 'required|string|max:400',
             'post.genre' => 'required|string|max:400',
             

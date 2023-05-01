@@ -1,9 +1,12 @@
 <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <x-app-layout>
+    <x-slot name="header">
     <head>
         <meta charset="utf-8">
         <title>Blog</title>
     </head>
+    </x-slot>
     <body>
         <h1>Band ONE</h1>
         <form action="/posts/{{ $post->id}}" method="POST">
@@ -43,7 +46,8 @@
             
             <div class="genre">
                 <h4>性別</h4>
-                <textarea name="post[genre]" placeholder="例：男性">{{ $post->genre }}</textarea>
+                <input type="radio" name="post[genre]" >男性{{ $post->genre }}</textarea>
+                <input type="radio" name="post[genre]" >女性{{ $post->genre }}</textarea>
                 <p class="genre__error" style="color:red">{{ $errors->first('post.genre') }}</p>
             </div>
             
@@ -54,4 +58,5 @@
             <a href="/posts/{{ $post->id }}">戻る</a>
         </div>
     </body>
+    </x-app-layout>
 </html>
