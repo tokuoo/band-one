@@ -20,12 +20,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->integer('age');
-            $table->string('gender');
-            $table->string('part_main');
-            $table->string('favorite_artist');
+            $table->integer('age')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('part_main')->nullable();
+            $table->string('favorite_artist')->nullable();
             $table->string('image_url')->nullable();
-            $table->string('team');
+            $table->string('team')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

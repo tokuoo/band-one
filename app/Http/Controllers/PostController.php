@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use APP\Http\controllers;
 
 class PostController extends Controller
 
@@ -12,6 +13,12 @@ class PostController extends Controller
     public function index(Post $post)
     {
         return view('posts/index')->with(['posts' => $post->getPaginateByLimit(3)]);
+         $posts = Post::with('user')->with('likes')->latest();
+        dump($posts);
+        return view('posts.index', compact('posts'))->with([
+        'search' => $search,
+        'no_item_message' => $no_item_message,
+         ]);
     }
     
     public function show(Post $post)
@@ -53,4 +60,6 @@ class PostController extends Controller
         $post->delete();
         return redirect('/');
     }
+    
+    
 }
