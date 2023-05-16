@@ -12,13 +12,10 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(3)]);
-         $posts = Post::with('user')->with('likes')->latest();
+        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(10)]);
+        $posts = Post::with('user')->with('likes')->latest();
         dump($posts);
-        return view('posts.index', compact('posts'))->with([
-        'search' => $search,
-        'no_item_message' => $no_item_message,
-         ]);
+        return view('posts.index', compact('posts'))->with([]);
     }
     
     public function show(Post $post)
@@ -39,9 +36,9 @@ class PostController extends Controller
         $post->recruit_nummbers = $input["recruit_nummbers"];
         $post->recruit_part = $input["recruit_part"];
         $post->genre = $input["genre"];
-        
         $post->save();
         return redirect('/posts/'. $post->id);
+        
     }
     
     public function edit(Post $post)
@@ -61,5 +58,8 @@ class PostController extends Controller
         return redirect('/');
     }
     
-    
+    public function user()
+    {
+    return $this->belongsTo('User');
+    }
 }
