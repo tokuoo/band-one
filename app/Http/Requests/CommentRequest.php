@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     
 
@@ -18,10 +18,6 @@ class PostRequest extends FormRequest
         return [
             'post.title' => 'required|string|max:100',
             'post.body' => 'required|string|max:400',
-            'post.place' => 'required|string|max:400',
-            'post.recruit_nummbers' => 'required|integer|max:100',
-            'post.recruit_part' => 'required|string|max:400',
-            'post.genre' => 'required|string|max:400',
             
         ];
     }

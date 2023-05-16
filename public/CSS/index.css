@@ -1,0 +1,10 @@
+
+div{
+border: solid 2px #000;
+width: 300px;
+height: 100px;
+}
+p {
+border: solid 2px red;
+width: 50%;
+}

@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     /**
@@ -14,14 +15,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-                $table->id();
-                $table->foreignId('user_id')->constrained();
-                $table->foreignId('post_id')->constrained();
-                $table->string('title');
-                $table->integer('body');
-                $table->timestamps();
-                $table->softDeletes();
-            });
+            $table->id();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('post_id')->constrained();
+            $table->string('title');
+            $table->string('body');
+            $table->timestamps();
+            $table->softDeletes();
+        });    
     }
 
     /**
@@ -31,6 +32,7 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('posts');
     }
 };

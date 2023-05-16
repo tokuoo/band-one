@@ -25,13 +25,15 @@ class Post extends Model
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 
-    public function user() {
+    public function user() 
+    {
         return $this->belongsTo(User::class);
     }
-    public function likes() {
+    
+    public function likes() 
+    {
         return $this->hasMany(Like::class);
     }
-
 
     public function posts() 
     {
@@ -40,6 +42,11 @@ class Post extends Model
     
     public function replies() {
         return $this->hasMany(Reply::class);
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
 }
